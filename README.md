@@ -7,3 +7,5 @@ Dapat mempercepat proses carian definisi perkataan berbanding dengan laman web y
 
 ## Cara Pemasangan
 * Muat turun aplikasi Python di https://www.python.org/downloads/. Pilih versi 3.xx
+
+# MASIH DALAM BUATAN
