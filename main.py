@@ -2,12 +2,12 @@ import os
 import requests
 from bs4 import BeautifulSoup
 
-def printWrapped(text):
+def printWrapped(text, line):
     final = 0
     for i in range(len(text) // (os.get_terminal_size().columns - 3)):
         print("\x1B[0;33m│\x1B[0;00m" + text[i * (os.get_terminal_size().columns - 3):(final := ((i+1) * (os.get_terminal_size().columns - 3)))] + "\x1B[0;33m│\x1B[0;00m")
-
-    if (text[-3:-2] == '|'):
+    
+    if line == 1:
         print(text + (" " * ((os.get_terminal_size().columns - 6) - len(text))) + "\x1B[0;33m│\x1B[0;00m")
         return
     
@@ -53,11 +53,15 @@ Sila isikan perkataan yang diinginkan definisinya (taip -1 untuk tamat): """))
 
         print("\x1B[0;33m│\x1B[0;00m" + str(index) + '.', end=' ')
 
+        line = 0
+
         for child in parse.find(id=str(index)).children:
             if child.text == "" or any(char in "اإبتثجچحخدذرزسشصطظعغڠفڤقکݢلنوۏهةءيڽى" for char in child.text):
                 continue
 
-            printWrapped(child.text)
+            line += 1
+
+            printWrapped(child.text, line)
 
         index += 1
     
